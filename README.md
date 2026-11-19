@@ -6,19 +6,25 @@ result with stable outcome and diagnostic codes.
 
 ## Install or build
 
-After a CLI release is available, run the installer from the matching source
-checkout. Set `CLI_VERSION` to the exact release version without the leading
-`v` for the shell example. The installer
-verifies the archive against the release's `checksums.txt`.
+### Linux and macOS
 
 ```sh
-sh scripts/install.sh --version "$CLI_VERSION"
+curl -fsSL https://raw.githubusercontent.com/haiven-dev/haiven-cli/v0.0.1/scripts/install.sh | sh
 ```
 
+The installer puts `haiven` in `~/.local/bin` by default. If your shell
+cannot find it, add that directory to your `PATH`.
+
+### Windows
+
 ```powershell
-$env:HAIVEN_VERSION = '<cli-version>'
-./scripts/install.ps1
+irm https://raw.githubusercontent.com/haiven-dev/haiven-cli/v0.0.1/scripts/install.ps1 | iex
 ```
+
+Open a new terminal to use the updated user `PATH`. Both installers check
+the downloaded archive against the release's `checksums.txt`.
+
+### From source
 
 With the Go version in `go.mod`, build from this checkout with
 `go build -trimpath -o dist/ ./cmd/haiven`. Run `haiven version` and
